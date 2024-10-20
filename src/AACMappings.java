@@ -1,3 +1,7 @@
+
+
+import edu.grinnell.csc207.util.AssociativeArray;
+
 /**
  * Creates a set of mappings of an AAC that has two levels,
  * one for categories and then within each category, it has
@@ -6,11 +10,14 @@
  * and updating the set of images that would be shown and handling
  * an interactions.
  * 
- * @author Catie Baker & YOUR NAME HERE
+ * @author Catie Baker & Jafar Jarrar
  *
  */
 public class AACMappings implements AACPage {
 	
+	private AssociativeArray<String, AACCategory> mappings;
+
+	private String fileName;
 	/**
 	 * Creates a set of mappings for the AAC based on the provided
 	 * file. The file is read in to create categories and fill each
@@ -32,8 +39,9 @@ public class AACMappings implements AACPage {
 	 * @param filename the name of the file that stores the mapping information
 	 */
 	public AACMappings(String filename) {
-
-	}
+		mappings = new AssociativeArray<String, AACCategory>();
+		this.fileName = filename;
+	} // AACMappings(String)
 	
 	/**
 	 * Given the image location selected, it determines the action to be
@@ -50,7 +58,7 @@ public class AACMappings implements AACPage {
 	 * category
 	 */
 	public String select(String imageLoc) {
-		return null;
+		return "";
 	}
 	
 	/**
