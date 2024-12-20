@@ -1,16 +1,17 @@
-
-
 import java.util.NoSuchElementException;
 
 import edu.grinnell.csc207.util.AssociativeArray;
+import edu.grinnell.csc207.util.KVPair;
 import edu.grinnell.csc207.util.KeyNotFoundException;
 import edu.grinnell.csc207.util.NullKeyException;
+import java.util.Iterator;
 
 /**
  * Represents the mappings for a single category of items that should
  * be displayed.
  * 
- * @author Catie Baker & Jafar Jarrar
+ * @author Catie Baker
+ * @author Jafar Jarrar
  *
  */
 public class AACCategory implements AACPage {
@@ -47,7 +48,14 @@ public class AACCategory implements AACPage {
 	 * it should return an empty array
 	 */
 	public String[] getImageLocs() {
-		return new String[] {""}; // STUB
+		String[] imageLocs = new String[this.items.size()];
+        int index = 0;
+		Iterator<KVPair<String, String>> iterator = this.items.iterator();
+		while (iterator.hasNext()) {
+            KVPair<String, String> current = iterator.next();
+            imageLocs[index++] = current.getKey();
+		} // while
+        return imageLocs;
 	} // getImageLocs()
 
 	/**
@@ -79,10 +87,24 @@ public class AACCategory implements AACPage {
 	 * @return true if it is in the category, false otherwise
 	 */
 	public boolean hasImage(String imageLoc) {
-		try {
-			return (this.items.find(imageLoc) > -1);
-		} catch (KeyNotFoundException e) {
-			return false;
-		} // try/catch
+        return this.items.hasKey(imageLoc);
 	} // hasImage(String)
+
+	/**
+	 * Retrieves the number of images in the category.
+	 * @return
+	 * The number of images.
+	 */
+	public int getSize() {
+		return this.items.size();
+	} // getSize()
+
+	/**
+	 * Retrieves the items in the category.
+	 * @return
+	 * The iterms.
+	 */
+	public AssociativeArray<String, String> getItems() {
+		return this.items;
+	} // getItems()
 } // class AACCategory

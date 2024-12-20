@@ -2,6 +2,7 @@ package edu.grinnell.csc207.util;
 
 import static java.lang.reflect.Array.newInstance;
 
+import java.util.Iterator;
 
 /**
  * A basic implementation of Associative Arrays with keys of type K
@@ -14,7 +15,7 @@ import static java.lang.reflect.Array.newInstance;
  * @author Jafar Jarrar
  * @author Samuel A. Rebelsky
  */
-public class AssociativeArray<K, V> {
+public class AssociativeArray<K, V> implements Iterable<KVPair<K, V>> {
   // +-----------+---------------------------------------------------
   // | Constants |
   // +-----------+
@@ -239,4 +240,34 @@ public class AssociativeArray<K, V> {
     } // for
     return index;
   } // find(K)
+
+  /**
+   * Provides an interator to traverse through the ley/value pairs in the
+   * associative array.
+   * @return
+   * An iterator to go through the pairs array.
+   */
+  public Iterator<KVPair<K, V>> iterator() {
+    return new Iterator<KVPair<K, V>>() {
+      int current = 0;
+
+      /**
+       * Indicates if there is another pair to be retrieved or not.
+       * @return
+       * True if there is another pair, false if not.
+       */
+      public boolean hasNext() {
+        return current < AssociativeArray.this.size;
+      } // hasNext()
+
+      /**
+       * Returns the next pair in the associative array.
+       * @return
+       * The next Key, Value pair.
+       */
+      public KVPair<K, V> next() {
+        return AssociativeArray.this.pairs[current++];
+      } // next()
+    };
+  } // iterator()
 } // class AssociativeArray

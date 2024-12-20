@@ -9,7 +9,7 @@ package edu.grinnell.csc207.util;
  * @param <V>
  *   The type of the values.
  */
-class KVPair<K, V> {
+public class KVPair<K, V> {
   // +--------+------------------------------------------------------
   // | Fields |
   // +--------+
@@ -60,6 +60,24 @@ class KVPair<K, V> {
   public KVPair<K, V> clone() {
     return new KVPair<K, V>(this.key, this.val);
   } // clone()
+
+  /**
+   * Returns the key of the pair.
+   * @return
+   * The key.
+   */
+  public K getKey() {
+    return this.key;
+  } // getKey()
+
+  /**
+   * Returns the value that the pair carries.
+   * @return
+   * The value.
+   */
+  public V getVal() {
+    return this.val;
+  } // getValue()
 
   /**
    * Convert the key/value pair to a string (e.g., for printing).
